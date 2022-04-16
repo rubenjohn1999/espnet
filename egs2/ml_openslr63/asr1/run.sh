@@ -19,7 +19,7 @@ lm_config=conf/train_lm.yaml
     --stop-stage 13 \
     --ignore_init_mismatch true \
     --lang "ml" \
-    --use_lm true \
+    --use_lm false \
     --lm_config "${lm_config}" \
     --token_type bpe \
     --nbpe 150 \
