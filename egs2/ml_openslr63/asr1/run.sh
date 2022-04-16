@@ -9,7 +9,7 @@ train_set="train_ml"
 train_dev="dev_ml"
 test_set="test_ml"
 
-asr_config=conf/train_asr.yaml
+asr_config=conf/tuning/train_asr_finetune.yaml
 inference_config=conf/decode_asr.yaml
 lm_config=conf/train_lm.yaml
 
