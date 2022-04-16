@@ -15,6 +15,9 @@ lm_config=conf/train_lm.yaml
 
 ./asr.sh \
     --ngpu 1 \
+    --stage 11 \
+    --stop-stage 13 \
+    --ignore_init_mismatch true \
     --lang "ml" \
     --use_lm true \
     --lm_config "${lm_config}" \
