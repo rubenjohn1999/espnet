@@ -25,6 +25,7 @@ lm_config=conf/train_lm.yaml
     --nbpe 150 \
     --bpemode "unigram" \
     --feats_type raw \
+    --feats_normalize utt_mvn \
     --speed_perturb_factors "0.9 1.0 1.1" \
     --gpu_inference true \
     --asr_config "${asr_config}" \
