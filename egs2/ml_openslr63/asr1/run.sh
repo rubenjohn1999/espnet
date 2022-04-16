@@ -15,19 +15,14 @@ lm_config=conf/train_lm.yaml
 
 ./asr.sh \
     --ngpu 1 \
-    --stage 10 \
+    --stage 1 \
     --stop-stage 13 \
     --ignore_init_mismatch true \
     --lang "ml" \
-    --use_lm false \
     --lm_config "${lm_config}" \
-    --token_type bpe \
-    --nbpe 150 \
-    --bpemode "unigram" \
-    --feats_type raw \
+    --nbpe 5000 \
     --feats_normalize utt_mvn \
     --speed_perturb_factors "0.9 1.0 1.1" \
-    --gpu_inference true \
     --asr_config "${asr_config}" \
     --inference_config "${inference_config}" \
     --train_set "${train_set}" \
