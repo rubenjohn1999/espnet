@@ -32,7 +32,7 @@ encoder_conf:
     output_size: 1024
     normalize_before: false
     freeze_finetune_updates: 100000
-    w2v_url: https://storage.googleapis.com/vakyansh-open-models/pretrained_models/clsril-23/CLSRIL-23.pt
+    w2v_url: https://storage.googleapis.com/vakyansh-open-models/models/malayalam/ml-IN/mlm_8h.pt
     w2v_dir_path: ./downloads/wav2vec_pretrained_models
 
 decoder: transformer
