@@ -43,7 +43,7 @@ if __name__ == "__main__":
     spks = sorted(list(spk2utt.keys()))
 
     # Reading list of test speakers
-    open_file = open("test_speakers.pkl", "rb")
+    open_file = open("/home/ubuntu/espnet/egs2/ml_openslr63/asr1/local/test_speakers.pkl", "rb")
     test_spks = pickle.load(open_file)
     open_file.close()
 
