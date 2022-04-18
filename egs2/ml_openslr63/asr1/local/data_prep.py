@@ -8,6 +8,7 @@
 import argparse
 import os
 import random
+import pickle
 
 
 if __name__ == "__main__":
@@ -40,16 +41,24 @@ if __name__ == "__main__":
                 spk2utt[spk] = [fid]
 
     spks = sorted(list(spk2utt.keys()))
-    num_fids = 0
-    num_test_spks = 0
-    for spk in spks:
-        num_test_spks += 1
-        fids = sorted(list(set(spk2utt[spk])))
-        num_fids += len(fids)
-        if num_fids >= 1000:
-            break
-    test_spks = spks[:num_test_spks]
-    train_dev_spks = spks[num_test_spks:]
+
+    # Reading list of test speakers
+    open_file = open("test_speakers.pkl", "rb")
+    test_spks = pickle.load(open_file)
+    open_file.close()
+
+    # num_fids = 0
+    # num_test_spks = 0
+    # for spk in spks:
+    #     num_test_spks += 1
+    #     fids = sorted(list(set(spk2utt[spk])))
+    #     num_fids += len(fids)
+    #     if num_fids >= 1000:
+    #         break
+    set_difference = set(spks) - set(test_spks)
+    train_dev_spks = list(set_difference)
+    # test_spks = spks[:num_test_spks]
+    # train_dev_spks = spks[num_test_spks:]
     random.Random(0).shuffle(train_dev_spks)
     num_train = int(len(train_dev_spks) * 0.9)
     train_spks = train_dev_spks[:num_train]
@@ -67,8 +76,8 @@ if __name__ == "__main__":
         for spk in spks:
             fids = sorted(list(set(spk2utt[spk])))
             num_fids += len(fids)
-            if phase == "test" and num_fids > 1000:
-                curr_num_fids = num_fids - 1000
+            if phase == "test" and num_fids > 800:
+                curr_num_fids = num_fids - 800
                 random.Random(1).shuffle(fids)
                 fids = fids[:curr_num_fids]
             utts = [spk + "-" + f for f in fids]
