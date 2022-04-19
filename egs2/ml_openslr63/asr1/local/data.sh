@@ -39,29 +39,20 @@ if [ ${stage} -le 0 ] && [ ${stop_stage} -ge 0 ]; then
     log "sub-stage 0: Download Data to downloads"
 
     cd ${MALAYALAM}
-    wget https://www.openslr.org/resources/63/ml_in_female.zip
-    unzip -o ml_in_female.zip
-    rm -f ml_in_female.zip
-    wget https://www.openslr.org/resources/63/ml_in_male.zip
-    unzip -o ml_in_male.zip
-    rm -f ml_in_male.zip
-
-    wget https://www.openslr.org/resources/63/line_index_female.tsv
-    wget https://www.openslr.org/resources/63/line_index_male.tsv
-    cat line_index_female.tsv line_index_male.tsv > line_index_all.tsv
+    gdown --id 1gEbggPorufsJTrXz7CGoQT3Jw6zBbZ4x
+    unzip -o monolingual_audio.zip
+    rm -f monolingual_audio.zip
+    mv monolingual_audio/* .
+    rm -r monolingual_audio
     cd $workspace
 fi
 
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
     log "sub-stage 1: Preparing Data for openslr"
 
-    python3 local/data_prep.py -d ${MALAYALAM}
-    utils/spk2utt_to_utt2spk.pl data/train_ml/spk2utt > data/train_ml/utt2spk
-    utils/spk2utt_to_utt2spk.pl data/dev_ml/spk2utt > data/dev_ml/utt2spk
-    utils/spk2utt_to_utt2spk.pl data/test_ml/spk2utt > data/test_ml/utt2spk
-    utils/fix_data_dir.sh data/train_ml
-    utils/fix_data_dir.sh data/dev_ml
-    utils/fix_data_dir.sh data/test_ml
+    python3 local/data_prep_mono.py -d ${MALAYALAM}
+    utils/spk2utt_to_utt2spk.pl data/mono_ml/spk2utt > data/mono_ml/utt2spk
+    utils/fix_data_dir.sh data/mono_ml
 fi
 
 log "Successfully finished. [elapsed=${SECONDS}s]"
