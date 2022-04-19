@@ -13,13 +13,15 @@ mono_set="mono_ml"
 ./asr.sh \
     --ngpu 1 \
     --gpu_inference true \
-    --stage 1 \
+    --stage 3 \
+    --lang "ml" \
     --stop_stage 4 \
     --skip_train true \
     --asr_exp exp/asr_train_asr_conformer_s3prlfrontend_hubert_fused_raw_ml_bpe150_sp \
     --lm_exp exp/lm_train_lm_ml_bpe150 \
     --feats_type raw \
     --feats_normalize utt_mvn \
-    --train_set "${train_set}" \
-    --valid_set "${train_dev}" \
     --test_sets "${mono_set}"
+
+#     --train_set "${train_set}" \
+#    --valid_set "${train_dev}" \
