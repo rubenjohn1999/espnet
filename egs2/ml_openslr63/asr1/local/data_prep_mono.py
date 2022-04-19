@@ -26,7 +26,7 @@ if __name__ == "__main__":
     utt2text = {}
     files = os.listdir(args.d)
     for file in files:
-
+        print(file)
         fid = file
         spk = 'mono'
         text = 'mono'
