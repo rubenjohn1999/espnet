@@ -43,8 +43,8 @@ if [ ${stage} -le 0 ] && [ ${stop_stage} -ge 0 ]; then
     gdown --id 1xJX4--ahGgItJAoMnT99wrLAHDiUpaY6
     unzip -o monolingual_audio.zip
     rm -f monolingual_audio.zip
-    mv __MACOSX/monolingual_audio/* .
-    rm -rf __MACOSX
+    mv monolingual_audio/* .
+    rm -r monolingual_audio
     cd $workspace
 fi
 
