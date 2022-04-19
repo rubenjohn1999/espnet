@@ -11,7 +11,7 @@ test_set="test_ml"
 
 ./asr.sh \
     --ngpu 1 \
-    --nj 3 \
+    --gpu_inference true \
     --skip_data_prep true \
     --skip_train true \
     --asr_exp exp/asr_train_asr_conformer_s3prlfrontend_hubert_fused_raw_ml_bpe150_sp \
