@@ -26,11 +26,10 @@ if __name__ == "__main__":
     utt2text = {}
     files = os.listdir(args.d)
     for file in files:
-        print(file)
         fid = file
         spk = 'mono'
         text = 'mono'
-        path = "%s/%s.wav" % (args.d, fid)
+        path = "%s/%s" % (args.d, fid)
 
         if os.path.exists(path):
             utt2text[fid] = text
