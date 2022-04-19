@@ -33,6 +33,7 @@ if [ -z "${MALAYALAM}" ]; then
     exit 1
 fi
 
+
 workspace=$PWD
 
 if [ ${stage} -le 0 ] && [ ${stop_stage} -ge 0 ]; then
