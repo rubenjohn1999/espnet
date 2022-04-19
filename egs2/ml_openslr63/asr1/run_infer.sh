@@ -14,6 +14,17 @@ mono_set="mono_ml"
 
 ./asr.sh \
     --ngpu 1 \
+    --stage 1 \
+    --stop_stage 4 \
+    --speed_perturb_factors "0.9 1.0 1.1" \
+    --lang "ml" \
+    --train_set "${train_set}" \
+    --valid_set "${train_dev}" \
+    --test_sets "${mono_set}" \
+    --lm_train_text "data/${train_set}/text"
+
+./asr.sh \
+    --ngpu 1 \
     --inference_nj 3 \
     --speed_perturb_factors "0.9 1.0 1.1" \
     --lang "ml" \
