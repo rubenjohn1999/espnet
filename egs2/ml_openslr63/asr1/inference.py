@@ -10,7 +10,7 @@ os.system("rm -f monolingual_audio.zip")
 
 parent_dir = "monolingual_audio/"
 for file in os.listdir(parent_dir):
-    os.system("ffmpeg -i " + parent_dir + file + " -y -f wav -ar 16000 -ab 16 -ac 1 " + parent_dir + "formatted" +file)
+    os.system("ffmpeg -i " + parent_dir + file + " -y -f wav -ar 16000 -ab 16 -ac 1 " + parent_dir + "formatted_" +file)
 
 speech2text = Speech2Text.from_pretrained(
     "espnet/ml_openslr63",
