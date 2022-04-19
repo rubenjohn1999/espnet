@@ -13,7 +13,8 @@ mono_set="mono_ml"
 ./asr.sh \
     --ngpu 1 \
     --gpu_inference true \
-    --stage 3 \
+    --speed_perturb_factors "0.9 1.0 1.1" \
+    --stage 2 \
     --lang "ml" \
     --stop_stage 4 \
     --skip_train true \
@@ -21,7 +22,7 @@ mono_set="mono_ml"
     --lm_exp exp/lm_train_lm_ml_bpe150 \
     --feats_type raw \
     --feats_normalize utt_mvn \
-    --test_sets "${mono_set}"
-
-#     --train_set "${train_set}" \
-#    --valid_set "${train_dev}" \
+    --train_set "${train_set}" \
+    --valid_set "${train_dev}" \
+    --test_sets "${test_set} ${mono_set}" \
+    --lm_train_text "data/${train_set}/text"
