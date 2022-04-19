@@ -12,9 +12,8 @@ parent_dir = "monolingual_audio/"
 for file in os.listdir(parent_dir):
     os.system("ffmpeg -i " + parent_dir + file + " -y -f wav -ar 16000 -ab 16 -ac 1 " + parent_dir + "formatted_" +file)
 
-speech2text = Speech2Text(
-    asr_model_file="exp/asr_train_asr_conformer_s3prlfrontend_hubert_fused_raw_ml_bpe150_sp/valid.acc.best.pth",
-    # Decoding parameters are not included in the model file
+speech2text = Speech2Text.from_pretrained(
+    asr_model_file="rmampill/malayalam-asr",
     asr_train_config='conf/tuning/train_asr_conformer_s3prlfrontend_hubert_fused.yaml',
     maxlenratio=0.0,
     minlenratio=0.0,
