@@ -8,3 +8,4 @@ for line in inference_file:
     text = " ".join(result[1:])
     output_file.write(file_name + "\t" + text)
 output_file.close()
+inference_file.close()
