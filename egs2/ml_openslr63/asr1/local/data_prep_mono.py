@@ -26,17 +26,18 @@ if __name__ == "__main__":
     utt2text = {}
     files = os.listdir(args.d)
     for file in files:
-        fid = file
-        spk = 'mono'
-        text = 'mono'
-        path = "%s/%s" % (args.d, fid)
+        if file.startswith('common_voice'):
+            fid = file
+            spk = 'mono'
+            text = 'mono'
+            path = "%s/%s" % (args.d, fid)
 
-        if os.path.exists(path):
-            utt2text[fid] = text
-            if spk in spk2utt:
-                spk2utt[spk].append(fid)
-            else:
-                spk2utt[spk] = [fid]
+            if os.path.exists(path):
+                utt2text[fid] = text
+                if spk in spk2utt:
+                    spk2utt[spk].append(fid)
+                else:
+                    spk2utt[spk] = [fid]
 
     spks = sorted(list(spk2utt.keys()))
 
