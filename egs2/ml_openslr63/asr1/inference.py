@@ -1,4 +1,3 @@
-from multiprocessing import parent_process
 import soundfile
 from espnet2.bin.asr_inference import Speech2Text
 import os
@@ -11,8 +10,7 @@ os.system("rm -f monolingual_audio.zip")
 
 parent_dir = "monolingual_audio/"
 for file in os.listdir(parent_dir):
-    os.system("fmpeg -i " + parent_dir + file + " -y -f wav -ar 16000 -ab 16 -ac 1 " 
-    + parent_dir + file)
+    os.system("ffmpeg -i " + parent_dir + file + " -y -f wav -ar 16000 -ab 16 -ac 1 " + parent_dir + file)
 
 speech2text = Speech2Text.from_pretrained(
     "espnet/ml_openslr63",
@@ -32,9 +30,7 @@ with open("monolingual_index.tsv", "w", encoding="utf-8") as output_file:
 
         speech, rate = soundfile.read(parent_dir + file)
         nbests = speech2text(speech)
-        text, *_ = nbests[0]
+        text, _ = nbests[0]
         # output_file.write(file + "\t" + text + "\n")
         # Write to tsv file
         print(text)
-
-
