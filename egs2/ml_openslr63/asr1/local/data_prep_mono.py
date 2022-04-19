@@ -26,7 +26,7 @@ if __name__ == "__main__":
     utt2text = {}
     files = os.listdir(args.d)
     for file in files:
-        if file.startswith('common_voice'):
+        if (not file.startswith('mlm')) and (not file.startswith('mlf')):
             fid = file
             spk = 'mono'
             text = 'mono'
