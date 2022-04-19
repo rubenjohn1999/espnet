@@ -15,6 +15,7 @@ for file in os.listdir(parent_dir):
 speech2text = Speech2Text.from_pretrained(
     "espnet/ml_openslr63",
     # Decoding parameters are not included in the model file
+    asr_train_config='conf/tuning/train_asr_conformer_s3prlfrontend_hubert_fused.yaml',
     maxlenratio=0.0,
     minlenratio=0.0,
     beam_size=10,
