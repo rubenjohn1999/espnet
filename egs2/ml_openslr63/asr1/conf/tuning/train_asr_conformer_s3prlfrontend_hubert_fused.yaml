@@ -1,5 +1,7 @@
 # network architecture
-
+cudnn_benchmark: false
+cudnn_deterministic: false
+use_amp: true
 # frontend related
 frontend: fused
 frontend_conf:

@@ -9,12 +9,14 @@ train_set="train_ml"
 train_dev="dev_ml"
 test_set="test_ml"
 
-asr_config=conf/train_asr.yaml
+asr_config=conf/tuning/train_asr_conformer_s3prlfrontend_hubert_fused.yaml
 inference_config=conf/decode_asr.yaml
 lm_config=conf/train_lm.yaml
 
 ./asr.sh \
     --ngpu 1 \
+    --stage 1 \
+    --stop_stage 13 \
     --lang "ml" \
     --use_lm true \
     --lm_config "${lm_config}" \
@@ -22,6 +24,7 @@ lm_config=conf/train_lm.yaml
     --nbpe 150 \
     --bpemode "unigram" \
     --feats_type raw \
+    --feats_normalize utt_mvn \
     --speed_perturb_factors "0.9 1.0 1.1" \
     --gpu_inference true \
     --asr_config "${asr_config}" \
