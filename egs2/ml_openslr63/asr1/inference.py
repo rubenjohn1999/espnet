@@ -31,7 +31,7 @@ with open("monolingual_index.tsv", "w", encoding="utf-8") as output_file:
         speech, rate = soundfile.read(parent_dir + file)
         nbests = speech2text(speech)
         print(nbests)
-        text, *_ = nbests[0]
+        text, _ = nbests[0]
         # output_file.write(file + "\t" + text + "\n")
         # Write to tsv file
         print(text)
