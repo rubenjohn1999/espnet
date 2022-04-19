@@ -16,6 +16,7 @@ mono_set="mono_ml"
     --ngpu 1 \
     --inference_nj 3 \
     --speed_perturb_factors "0.9 1.0 1.1" \
+    --lang "ml" \
     --skip_data_prep true \
     --skip_train true \
     --asr_exp exp/asr_train_asr_conformer_s3prlfrontend_hubert_fused_raw_ml_bpe150_sp \
