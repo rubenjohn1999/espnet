@@ -13,7 +13,7 @@ mono_set="mono_ml"
 ./asr.sh \
     --ngpu 1 \
     --gpu_inference true \
-    --stage 2 \
+    --stage 1 \
     --stop_stage 4 \
     --skip_train true \
     --asr_exp exp/asr_train_asr_conformer_s3prlfrontend_hubert_fused_raw_ml_bpe150_sp \
