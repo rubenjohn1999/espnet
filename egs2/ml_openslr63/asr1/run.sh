@@ -13,6 +13,7 @@ asr_config=conf/tuning/train_asr_conformer_s3prlfrontend_hubert_fused.yaml
 inference_config=conf/decode_asr.yaml
 lm_config=conf/train_lm.yaml
 
+
 ./asr.sh \
     --ngpu 1 \
     --stage 1 \
