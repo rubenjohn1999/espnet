@@ -45,8 +45,6 @@ if [ ${stage} -le 0 ] && [ ${stop_stage} -ge 0 ]; then
     rm -f monolingual_audio.zip
     mv monolingual_audio/* .
     rm -r monolingual_audio
-    rm -rf __MACOSX
-    rm LICESNE
     cd $workspace
 fi
 
