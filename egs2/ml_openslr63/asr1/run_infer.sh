@@ -14,7 +14,7 @@ mono_set="mono_ml"
 
 ./asr.sh \
     --ngpu 1 \
-    --gpu_inference true \
+    --nj 3 \
     --speed_perturb_factors "0.9 1.0 1.1" \
     --skip_data_prep true \
     --skip_train true \
