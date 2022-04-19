@@ -16,7 +16,7 @@ mono_set="mono_ml"
     --ngpu 1 \
     --gpu_inference true \
     --speed_perturb_factors "0.9 1.0 1.1" \
-    --stage 2 \
+    --stage 1 \
     --lang "ml" \
     --stop_stage 4 \
     --skip_train true \
