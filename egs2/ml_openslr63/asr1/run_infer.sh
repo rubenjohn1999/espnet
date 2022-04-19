@@ -19,4 +19,4 @@ test_set="test_ml"
     --feats_normalize utt_mvn \
     --train_set "${train_set}" \
     --valid_set "${train_dev}" \
-    --test_sets "${test_set}"
+    --test_sets "${train_dev}"
