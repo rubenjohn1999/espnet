@@ -21,6 +21,7 @@ mono_set="mono_ml"
     --skip_train true \
     --asr_exp exp/asr_train_asr_conformer_s3prlfrontend_hubert_fused_raw_ml_bpe150_sp \
     --lm_exp exp/lm_train_lm_ml_bpe150 \
+    --nbpe 150 \
     --feats_type raw \
     --feats_normalize utt_mvn \
     --train_set "${train_set}" \
