@@ -10,11 +10,13 @@ train_dev="dev_ml"
 test_set="test_ml"
 mono_set="mono_ml"
 
+# Change mono_data.sh to data.sh before this
+
 ./asr.sh \
     --ngpu 1 \
     --gpu_inference true \
     --speed_perturb_factors "0.9 1.0 1.1" \
-    --stage 2 \
+    --stage 1 \
     --lang "ml" \
     --stop_stage 4 \
     --skip_train true \
