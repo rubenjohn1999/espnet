@@ -57,7 +57,7 @@ if __name__ == "__main__":
             utts_str = " ".join(utts)
             spk2utt_strs.append("%s %s" % (spk, utts_str))
             for fid, utt in zip(fids, utts):
-                cmd = "ffmpeg -i %s/%s.wav -f wav -ar %d -ab 16 -ac 1 - |" % (
+                cmd = "ffmpeg -i %s/%s -f wav -ar %d -ab 16 -ac 1 - |" % (
                     flac_dir,
                     fid,
                     sr,
