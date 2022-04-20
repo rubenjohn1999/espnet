@@ -28,7 +28,7 @@ male_tsv = open("monolingual_data/label_male.tsv", "w", encoding="utf-8")
 
 for line in male_tsv_lines:
     values = line.split("\t")
-    file_name = values[0]
+    file_name = values[0].split('.wav')[0]
     audio_text = values[1]
     file_name = "mlm_mono_" + file_name
     male_tsv.write(file_name + "\t" + audio_text)
@@ -46,7 +46,7 @@ female_tsv = open("monolingual_data/label_female.tsv", "w", encoding="utf-8")
 
 for line in female_tsv_lines:
     values = line.split("\t")
-    file_name = values[0]
+    file_name = values[0].split('.wav')[0]
     audio_text = values[1]
     file_name = "mlm_mono_" + file_name
     female_tsv.write(file_name + "\t" + audio_text)
