@@ -2,7 +2,7 @@ import os
 import time
 # Download the files
 
-while "kaggle_male.zip" not in os.listdir('downloads/'):
+while "kaggle_male.zip" not in os.listdir('~/espnet/egs2/ml_openslr63/asr1/downloads/'):
     os.system("gdown --id 14V24RX041vCyjd6LJ8bGD6YOOJAr05gk")
     time.sleep(30)
 
@@ -11,7 +11,7 @@ os.system("rm -rf kaggle_male.zip")
 
 time.sleep(30)
 
-while "kaggle_female.zip" not in os.listdir('downloads/'):
+while "kaggle_female.zip" not in os.listdir('~/espnet/egs2/ml_openslr63/asr1/downloads/'):
     os.system("gdown --id 1NeH8U2sGAx37k0J2nA4F0YR4Qtsox31M")
     time.sleep(30)
 
