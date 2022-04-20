@@ -1,9 +1,11 @@
 import os
-
+import time
 # Download the files
 os.system("gdown --id 14V24RX041vCyjd6LJ8bGD6YOOJAr05gk")
 os.system("unzip kaggle_male.zip")
 os.system("rm -rf kaggle_male.zip")
+
+time.sleep(30)
 
 os.system("gdown --id 1NeH8U2sGAx37k0J2nA4F0YR4Qtsox31M")
 os.system("unzip kaggle_female.zip")
