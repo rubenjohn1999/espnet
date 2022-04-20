@@ -10,6 +10,7 @@ import os
 import random
 import pickle
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", help="downloads directory", type=str, default="downloads")
@@ -22,34 +23,32 @@ if __name__ == "__main__":
     tsv_lines = [line.strip() for line in tsv_lines]
 
     spk2utt = {}
+    spk2utt_mono = {}
     utt2text = {}
-
-    # Parse through the openslr files
     for line in tsv_lines:
         l_list = line.split("\t")
         fid = l_list[0]
-        spk = fid.split("_")[1]
-        text = l_list[1]
-        text = text.replace(".", "")
-        text = text.replace(",", "")
-        text = text.lower()
-        path = "%s/%s.wav" % (args.d, fid)
-        if os.path.exists(path):
-            utt2text[fid] = text
-            if spk in spk2utt:
-                spk2utt[spk].append(fid)
-            else:
-                spk2utt[spk] = [fid]
+        if fid.startswith("mlm_mono"):
+            spk = "mlm_mono"
+            text = l_list[1]
+            text = text.replace(".", "")
+            text = text.replace(",", "")
+            text = text.lower()
+            path = "%s/%s.wav" % (args.d, fid)
+            if os.path.exists(path):
+                utt2text[fid] = text
+                if spk in spk2utt_mono:
+                    spk2utt_mono[spk].append(fid)
+                else:
+                    spk2utt_mono[spk] = [fid]
 
-    # Parse through monolingual data
-    files = os.listdir(args.d)
-    for file in files:
-        if (not file.startswith('mlm')) and (not file.startswith('mlf')) and file.endswith('.wav'):
-            fid = file
-            spk = 'mono'
-            text = 'mono'
-            path = "%s/%s" % (args.d, fid)
-
+        else:
+            spk = fid.split("_")[1]
+            text = l_list[1]
+            text = text.replace(".", "")
+            text = text.replace(",", "")
+            text = text.lower()
+            path = "%s/%s.wav" % (args.d, fid)
             if os.path.exists(path):
                 utt2text[fid] = text
                 if spk in spk2utt:
@@ -64,23 +63,28 @@ if __name__ == "__main__":
     test_spks = pickle.load(open_file)
     open_file.close()
 
+    # num_fids = 0
+    # num_test_spks = 0
+    # for spk in spks:
+    #     num_test_spks += 1
+    #     fids = sorted(list(set(spk2utt[spk])))
+    #     num_fids += len(fids)
+    #     if num_fids >= 1000:
+    #         break
     set_difference = set(spks) - set(test_spks)
     train_dev_spks = list(set_difference)
-
-    # Remove mono from train and dev
-    train_dev_spks.remove("mono")
-
+    # test_spks = spks[:num_test_spks]
+    # train_dev_spks = spks[num_test_spks:]
     random.Random(0).shuffle(train_dev_spks)
     num_train = int(len(train_dev_spks) * 0.9)
     train_spks = train_dev_spks[:num_train]
     dev_spks = train_dev_spks[num_train:]
-    mono_spks = ["mono"]
+    train_spks.append("mlm_mono")
+    spk2utt["mlm_mono"] = spk2utt_mono["mlm_mono"]
 
-    spks_by_phase = {"train": train_spks, "dev": dev_spks, "test": test_spks, "mono": mono_spks}
-
+    spks_by_phase = {"train": train_spks, "dev": dev_spks, "test": test_spks}
     flac_dir = "%s" % args.d
     sr = 16000
-
     for phase in spks_by_phase:
         spks = spks_by_phase[phase]
         text_strs = []
@@ -105,19 +109,18 @@ if __name__ == "__main__":
                 )
                 text_strs.append("%s %s" % (utt, utt2text[fid]))
                 wav_scp_strs.append("%s %s" % (utt, cmd))
-
-            phase_dir = "data/%s_ml" % phase
-            if not os.path.exists(phase_dir):
-                os.makedirs(phase_dir)
-            text_strs = sorted(text_strs)
-            wav_scp_strs = sorted(wav_scp_strs)
-            spk2utt_strs = sorted(spk2utt_strs)
-            with open(os.path.join(phase_dir, "text"), "w+") as ouf:
-                for s in text_strs:
-                    ouf.write("%s\n" % s)
-            with open(os.path.join(phase_dir, "wav.scp"), "w+") as ouf:
-                for s in wav_scp_strs:
-                    ouf.write("%s\n" % s)
-            with open(os.path.join(phase_dir, "spk2utt"), "w+") as ouf:
-                for s in spk2utt_strs:
-                    ouf.write("%s\n" % s)
+        phase_dir = "data/%s_ml" % phase
+        if not os.path.exists(phase_dir):
+            os.makedirs(phase_dir)
+        text_strs = sorted(text_strs)
+        wav_scp_strs = sorted(wav_scp_strs)
+        spk2utt_strs = sorted(spk2utt_strs)
+        with open(os.path.join(phase_dir, "text"), "w+") as ouf:
+            for s in text_strs:
+                ouf.write("%s\n" % s)
+        with open(os.path.join(phase_dir, "wav.scp"), "w+") as ouf:
+            for s in wav_scp_strs:
+                ouf.write("%s\n" % s)
+        with open(os.path.join(phase_dir, "spk2utt"), "w+") as ouf:
+            for s in spk2utt_strs:
+                ouf.write("%s\n" % s)
