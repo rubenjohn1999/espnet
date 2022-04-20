@@ -4,16 +4,14 @@ import time
 
 while "kaggle_male.zip" not in os.listdir('../downloads'):
     os.system("gdown --id 14V24RX041vCyjd6LJ8bGD6YOOJAr05gk")
-    time.sleep(5)
+    time.sleep(2)
 
 os.system("unzip kaggle_male.zip")
 os.system("rm -rf kaggle_male.zip")
 
-time.sleep(5)
-
 while "kaggle_female.zip" not in os.listdir('../downloads'):
     os.system("gdown --id 1NeH8U2sGAx37k0J2nA4F0YR4Qtsox31M")
-    time.sleep(5)
+    time.sleep(2)
 
 os.system("unzip kaggle_female.zip")
 os.system("rm -rf kaggle_female.zip")
