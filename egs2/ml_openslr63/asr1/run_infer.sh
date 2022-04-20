@@ -19,6 +19,7 @@ mono_set="mono_ml"
     --speed_perturb_factors "0.9 1.0 1.1" \
     --lang "ml" \
     --skip_train true \
+    --nbpe 150 \
     --asr_exp exp/asr_train_asr_conformer_s3prlfrontend_hubert_fused_raw_ml_bpe150_sp \
     --lm_exp exp/lm_train_lm_ml_bpe150 \
     --feats_type raw \
