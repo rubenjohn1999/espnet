@@ -4,16 +4,16 @@ import time
 
 while "kaggle_male.zip" not in os.listdir('../downloads'):
     os.system("gdown --id 14V24RX041vCyjd6LJ8bGD6YOOJAr05gk")
-    time.sleep(30)
+    time.sleep(5)
 
 os.system("unzip kaggle_male.zip")
 os.system("rm -rf kaggle_male.zip")
 
-time.sleep(30)
+time.sleep(5)
 
 while "kaggle_female.zip" not in os.listdir('../downloads'):
     os.system("gdown --id 1NeH8U2sGAx37k0J2nA4F0YR4Qtsox31M")
-    time.sleep(30)
+    time.sleep(5)
 
 os.system("unzip kaggle_female.zip")
 os.system("rm -rf kaggle_female.zip")
@@ -54,7 +54,9 @@ for line in female_tsv_lines:
 female_tsv.close()
 
 # move audio files from kaggle_male and kaggle_female to monolingual_data
+print(os.listdir())
 for file in os.listdir("../downloads/kaggle_male/wav"):
+    print(file)
     os.system("mv "+ file + " mlm_mono_" + file)
 for file in os.listdir("../downloads/kaggle_female/wav"):
     os.system("mv "+ file + " mlm_mono_" + file)
