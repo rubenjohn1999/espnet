@@ -14,7 +14,7 @@ mono_set="mono_ml"
 
 ./asr.sh \
     --ngpu 1 \
-    --stage 5 \
+    --stage 1 \
     --stop_stage 5 \
     --speed_perturb_factors "0.9 1.0 1.1" \
     --lang "ml" \
