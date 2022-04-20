@@ -54,11 +54,11 @@ for line in female_tsv_lines:
 female_tsv.close()
 
 # move audio files from kaggle_male and kaggle_female to monolingual_data
-print(os.listdir())
+
 for file in os.listdir("../downloads/kaggle_male/wav"):
-    print(file)
-    os.system("mv "+ file + " mlm_mono_" + file)
+    os.system("mv kaggle_male/wav/" + file + " kaggle_male/wav/mlm_mono_" + file)
 for file in os.listdir("../downloads/kaggle_female/wav"):
-    os.system("mv "+ file + " mlm_mono_" + file)
+    os.system("mv kaggle_female/wav/" + file + " kaggle_female/wav/mlm_mono_" + file)
+
 os.system("mv kaggle_male/wav/*.wav monolingual_data")
 os.system("mv kaggle_female/wav/*.wav monolingual_data")
