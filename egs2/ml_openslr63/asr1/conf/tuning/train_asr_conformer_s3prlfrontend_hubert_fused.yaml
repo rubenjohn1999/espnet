@@ -61,7 +61,7 @@ model_conf:
 optim: adam
 accum_grad: 1
 grad_clip: 3
-max_epoch: 50
+max_epoch: 30
 optim_conf:
     lr: 0.5
 scheduler: noamlr
@@ -76,7 +76,7 @@ best_model_criterion:
 -   - valid
     - acc
     - max
-keep_nbest_models: 10
+keep_nbest_models: 3
 
 specaug: specaug
 specaug_conf:
