@@ -49,6 +49,7 @@ if [ ${stage} -le 0 ] && [ ${stop_stage} -ge 0 ]; then
     wget https://www.openslr.org/resources/63/line_index_female.tsv
     wget https://www.openslr.org/resources/63/line_index_male.tsv
 
+
     # will create a folder called monolingual_data with label_female.tsv label_male.tsv audio files
     python3 ../local/convert_tts_output_to_mono.py
 
