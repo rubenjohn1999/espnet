@@ -125,7 +125,7 @@ if __name__ == "__main__":
     utts = ["mlm_mono" + "-" + f for f in train_fids]
     utts_str = " ".join(utts)
     spk2utt_strs.append("%s %s" % ("mlm_mono", utts_str))
-    for fid, utt in zip(fids, utts):
+    for fid, utt in zip(train_fids, utts):
         cmd = "ffmpeg -i %s/%s.wav -f wav -ar %d -ab 16 -ac 1 - |" % (
             flac_dir,
             fid,
@@ -158,7 +158,7 @@ if __name__ == "__main__":
     utts = ["mlm_mono" + "-" + f for f in dev_fids]
     utts_str = " ".join(utts)
     spk2utt_strs.append("%s %s" % ("mlm_mono", utts_str))
-    for fid, utt in zip(fids, utts):
+    for fid, utt in zip(dev_fids, utts):
         cmd = "ffmpeg -i %s/%s.wav -f wav -ar %d -ab 16 -ac 1 - |" % (
             flac_dir,
             fid,
