@@ -69,7 +69,7 @@ if __name__ == "__main__":
     spk2utt["mlm_mono"] = spk2utt_mono["mlm_mono"]
     total_utterance = len(spk2utt["mlm_mono"])
     train_utterance = int(0.9 * total_utterance)
-
+    print("LEN TRAIN UTTER = " + train_utterance)
 
     spks_by_phase = {"test": test_spks}
     flac_dir = "%s" % args.d
@@ -117,6 +117,7 @@ if __name__ == "__main__":
 
     # building train and dev sets
     train_fids = spk2utt["mlm_mono"][:train_utterance]
+    print("TRAIN FIDS = ", len(train_fids))
 
     # Train
     text_strs = []
