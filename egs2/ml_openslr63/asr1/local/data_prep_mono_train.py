@@ -67,8 +67,9 @@ if __name__ == "__main__":
     train_spks = "mlm_mono"
     dev_spks = "mlm_mono"
     spk2utt["mlm_mono"] = spk2utt_mono["mlm_mono"]
-    total_utterance = len(spk2utt["mlm_mono"])
+    total_utterance = len(spk2utt_mono["mlm_mono"])
     train_utterance = int(0.9 * total_utterance)
+    print(len(spk2utt_mono["mlm_mono"]))
     print("LEN TRAIN UTTER = ", str(train_utterance))
 
     spks_by_phase = {"test": test_spks}
