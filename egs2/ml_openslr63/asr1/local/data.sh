@@ -62,7 +62,7 @@ fi
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
     log "sub-stage 1: Preparing Data for openslr"
 
-    python3 local/data_prep_iterative.py -d ${MALAYALAM}
+    python3 local/data_prep_mono_train.py -d ${MALAYALAM}
     utils/spk2utt_to_utt2spk.pl data/train_ml/spk2utt > data/train_ml/utt2spk
     utils/spk2utt_to_utt2spk.pl data/dev_ml/spk2utt > data/dev_ml/utt2spk
     utils/spk2utt_to_utt2spk.pl data/test_ml/spk2utt > data/test_ml/utt2spk

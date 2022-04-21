@@ -61,9 +61,9 @@ model_conf:
 optim: adam
 accum_grad: 1
 grad_clip: 3
-max_epoch: 50
+max_epoch: 35
 optim_conf:
-    lr: 0.5
+    lr: 0.005
 scheduler: noamlr
 scheduler_conf:
     warmup_steps: 2500
