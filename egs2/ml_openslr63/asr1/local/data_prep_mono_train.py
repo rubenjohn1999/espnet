@@ -64,15 +64,20 @@ if __name__ == "__main__":
     test_spks = pickle.load(open_file)
     open_file.close()
 
+    # Reading list of dev speakers
+    open_file = open("/home/ubuntu/espnet/egs2/ml_openslr63/asr1/local/dev_speakers.pkl", "rb")
+    dev_spks = pickle.load(open_file)
+    open_file.close()
+
     train_spks = "mlm_mono"
-    dev_spks = "mlm_mono"
+    # dev_spks = "mlm_mono"
     spk2utt["mlm_mono"] = spk2utt_mono["mlm_mono"]
     total_utterance = len(spk2utt_mono["mlm_mono"])
-    train_utterance = int(0.9 * total_utterance)
+    train_utterance = int(1.0 * total_utterance)
     print(len(spk2utt_mono["mlm_mono"]))
     print("LEN TRAIN UTTER = ", str(train_utterance))
 
-    spks_by_phase = {"test": test_spks}
+    spks_by_phase = {"test": test_spks, "dev": dev_spks}
     flac_dir = "%s" % args.d
     sr = 16000
     # building test set
@@ -153,34 +158,34 @@ if __name__ == "__main__":
             ouf.write("%s\n" % s)
 
     # Dev
-    dev_fids = spk2utt["mlm_mono"][train_utterance:]
-    text_strs = []
-    wav_scp_strs = []
-    spk2utt_strs = []
-    utts = ["mlm_mono" + "-" + f for f in dev_fids]
-    utts_str = " ".join(utts)
-    spk2utt_strs.append("%s %s" % ("mlm_mono", utts_str))
-    for fid, utt in zip(dev_fids, utts):
-        cmd = "ffmpeg -i %s/%s.wav -f wav -ar %d -ab 16 -ac 1 - |" % (
-            flac_dir,
-            fid,
-            sr,
-        )
-        text_strs.append("%s %s" % (utt, utt2text[fid]))
-        wav_scp_strs.append("%s %s" % (utt, cmd))
-
-    phase_dir = "data/dev_ml"
-    if not os.path.exists(phase_dir):
-        os.makedirs(phase_dir)
-    text_strs = sorted(text_strs)
-    wav_scp_strs = sorted(wav_scp_strs)
-    spk2utt_strs = sorted(spk2utt_strs)
-    with open(os.path.join(phase_dir, "text"), "w+") as ouf:
-        for s in text_strs:
-            ouf.write("%s\n" % s)
-    with open(os.path.join(phase_dir, "wav.scp"), "w+") as ouf:
-        for s in wav_scp_strs:
-            ouf.write("%s\n" % s)
-    with open(os.path.join(phase_dir, "spk2utt"), "w+") as ouf:
-        for s in spk2utt_strs:
-            ouf.write("%s\n" % s)
+    # dev_fids = spk2utt["mlm_mono"][train_utterance:]
+    # text_strs = []
+    # wav_scp_strs = []
+    # spk2utt_strs = []
+    # utts = ["mlm_mono" + "-" + f for f in dev_fids]
+    # utts_str = " ".join(utts)
+    # spk2utt_strs.append("%s %s" % ("mlm_mono", utts_str))
+    # for fid, utt in zip(dev_fids, utts):
+    #     cmd = "ffmpeg -i %s/%s.wav -f wav -ar %d -ab 16 -ac 1 - |" % (
+    #         flac_dir,
+    #         fid,
+    #         sr,
+    #     )
+    #     text_strs.append("%s %s" % (utt, utt2text[fid]))
+    #     wav_scp_strs.append("%s %s" % (utt, cmd))
+    #
+    # phase_dir = "data/dev_ml"
+    # if not os.path.exists(phase_dir):
+    #     os.makedirs(phase_dir)
+    # text_strs = sorted(text_strs)
+    # wav_scp_strs = sorted(wav_scp_strs)
+    # spk2utt_strs = sorted(spk2utt_strs)
+    # with open(os.path.join(phase_dir, "text"), "w+") as ouf:
+    #     for s in text_strs:
+    #         ouf.write("%s\n" % s)
+    # with open(os.path.join(phase_dir, "wav.scp"), "w+") as ouf:
+    #     for s in wav_scp_strs:
+    #         ouf.write("%s\n" % s)
+    # with open(os.path.join(phase_dir, "spk2utt"), "w+") as ouf:
+    #     for s in spk2utt_strs:
+    #         ouf.write("%s\n" % s)
