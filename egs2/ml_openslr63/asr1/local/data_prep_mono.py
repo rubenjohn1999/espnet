@@ -64,16 +64,21 @@ if __name__ == "__main__":
     test_spks = pickle.load(open_file)
     open_file.close()
 
-    set_difference = set(spks) - set(test_spks)
-    train_dev_spks = list(set_difference)
+    # Reading list of dev speakers
+    open_file = open("/home/ubuntu/espnet/egs2/ml_openslr63/asr1/local/dev_speakers.pkl", "rb")
+    dev_spks = pickle.load(open_file)
+    open_file.close()
+
+    set_difference = set(spks) - set(test_spks) - set(dev_spks)
+    train_spks = list(set_difference)
 
     # Remove mono from train and dev
-    train_dev_spks.remove("mono")
+    train_spks.remove("mono")
 
-    random.Random(0).shuffle(train_dev_spks)
-    num_train = int(len(train_dev_spks) * 0.9)
-    train_spks = train_dev_spks[:num_train]
-    dev_spks = train_dev_spks[num_train:]
+    # random.Random(0).shuffle(train_dev_spks)
+    # num_train = int(len(train_dev_spks) * 0.9)
+    # train_spks = train_dev_spks[:num_train]
+    # dev_spks = train_dev_spks[num_train:]
     mono_spks = ["mono"]
 
     spks_by_phase = {"train": train_spks, "dev": dev_spks, "test": test_spks, "mono": mono_spks}

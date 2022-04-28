@@ -64,6 +64,11 @@ if __name__ == "__main__":
     test_spks = pickle.load(open_file)
     open_file.close()
 
+    # Reading list of dev speakers
+    open_file = open("/home/ubuntu/espnet/egs2/ml_openslr63/asr1/local/dev_speakers.pkl", "rb")
+    dev_spks = pickle.load(open_file)
+    open_file.close()
+
     # num_fids = 0
     # num_test_spks = 0
     # for spk in spks:
@@ -72,14 +77,14 @@ if __name__ == "__main__":
     #     num_fids += len(fids)
     #     if num_fids >= 1000:
     #         break
-    set_difference = set(spks) - set(test_spks)
-    train_dev_spks = list(set_difference)
+    set_difference = set(spks) - set(test_spks) - set(dev_spks)
+    train_spks = list(set_difference)
     # test_spks = spks[:num_test_spks]
     # train_dev_spks = spks[num_test_spks:]
-    random.Random(0).shuffle(train_dev_spks)
-    num_train = int(len(train_dev_spks) * 0.9)
-    train_spks = train_dev_spks[:num_train]
-    dev_spks = train_dev_spks[num_train:]
+    # random.Random(0).shuffle(train_dev_spks)
+    # num_train = int(len(train_dev_spks) * 0.9)
+    # train_spks = train_dev_spks[:num_train]
+    # dev_spks = train_dev_spks[num_train:]
     train_spks.append("mlm_mono")
     spk2utt["mlm_mono"] = spk2utt_mono["mlm_mono"]
 
