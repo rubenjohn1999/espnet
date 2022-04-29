@@ -2,6 +2,7 @@
 cudnn_benchmark: false
 cudnn_deterministic: false
 use_amp: true
+
 # frontend related
 frontend: fused
 frontend_conf:
@@ -61,9 +62,9 @@ model_conf:
 optim: adam
 accum_grad: 1
 grad_clip: 3
-max_epoch: 35
+max_epoch: 40
 optim_conf:
-    lr: 0.005
+    lr: 0.5
 scheduler: noamlr
 scheduler_conf:
     warmup_steps: 2500
