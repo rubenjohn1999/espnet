@@ -41,7 +41,7 @@ asr_config=conf/tuning/train_asr_conformer_s3prlfrontend_hubert_fused.yaml
 
 ./asr.sh \
     --ngpu 1 \
-    --stage 12 \
+    --stage 11 \
     --stop_stage 13 \
     --lang "ml" \
     --use_lm true \
