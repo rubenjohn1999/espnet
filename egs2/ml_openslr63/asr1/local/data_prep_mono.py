@@ -102,14 +102,24 @@ if __name__ == "__main__":
             utts = [spk + "-" + f for f in fids]
             utts_str = " ".join(utts)
             spk2utt_strs.append("%s %s" % (spk, utts_str))
-            for fid, utt in zip(fids, utts):
-                cmd = "ffmpeg -i %s/%s.wav -f wav -ar %d -ab 16 -ac 1 - |" % (
-                    flac_dir,
-                    fid,
-                    sr,
-                )
-                text_strs.append("%s %s" % (utt, utt2text[fid]))
-                wav_scp_strs.append("%s %s" % (utt, cmd))
+            if phase == "mono":
+                for fid, utt in zip(fids, utts):
+                    cmd = "ffmpeg -i %s/%s -f wav -ar %d -ab 16 -ac 1 - |" % (
+                        flac_dir,
+                        fid,
+                        sr,
+                    )
+                    text_strs.append("%s %s" % (utt, utt2text[fid]))
+                    wav_scp_strs.append("%s %s" % (utt, cmd))
+            else:
+                for fid, utt in zip(fids, utts):
+                    cmd = "ffmpeg -i %s/%s.wav -f wav -ar %d -ab 16 -ac 1 - |" % (
+                        flac_dir,
+                        fid,
+                        sr,
+                    )
+                    text_strs.append("%s %s" % (utt, utt2text[fid]))
+                    wav_scp_strs.append("%s %s" % (utt, cmd))
 
             phase_dir = "data/%s_ml" % phase
             if not os.path.exists(phase_dir):
