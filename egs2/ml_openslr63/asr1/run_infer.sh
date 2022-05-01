@@ -33,7 +33,7 @@ mono_set="mono_ml"
 
 ./asr.sh \
     --ngpu 1 \
-    --inference_nj 3 \
+    --gpu_inference true \
     --lang "ml" \
     --skip_data_prep true \
     --skip_train true \
