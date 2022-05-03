@@ -64,14 +64,14 @@ os.system("mv leipzig_female/wav/*.wav monolingual_data")
 # ----------------------------Adding Kaggle data-----------------------------
 
 while "kaggle_male.zip" not in os.listdir('../downloads'):
-    os.system("gdown --id 1I17gbcbRI_Fi6oO1DJpKVe4ZLa0Tcv2p")
+    os.system("gdown --id 1v7ZGJi7mBNL0ED46dZB2NHmVz1m_HiYu")
     time.sleep(2)
 
 os.system("unzip kaggle_male.zip")
 os.system("rm -rf kaggle_male.zip")
 
 while "kaggle_female.zip" not in os.listdir('../downloads'):
-    os.system("gdown --id 1Rcje1qeo_Y9QJ5RbmObrYYlFRcDp-UGU")
+    os.system("gdown --id 1y_hfgGnrM_hc5uBwy-fiL52B1T8M37JZ")
     time.sleep(2)
 
 os.system("unzip kaggle_female.zip")
