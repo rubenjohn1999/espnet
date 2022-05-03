@@ -48,21 +48,14 @@ if [ ${stage} -le 0 ] && [ ${stop_stage} -ge 0 ]; then
 
     wget https://www.openslr.org/resources/63/line_index_female.tsv
     wget https://www.openslr.org/resources/63/line_index_male.tsv
-
-
-    # will create a folder called monolingual_data with label_female.tsv label_male.tsv audio files
-    python3 ../local/convert_tts_output_to_mono.py
-
-    # write all the file-text pairs to one file
-    cat line_index_female.tsv line_index_male.tsv monolingual_data/label_female.tsv monolingual_data/label_male.tsv > line_index_all.tsv
-    mv monolingual_data/*.wav ./
+    cat line_index_female.tsv line_index_male.tsv > line_index_all.tsv
     cd $workspace
 fi
 
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
     log "sub-stage 1: Preparing Data for openslr"
 
-    python3 local/data_prep_iterative.py -d ${MALAYALAM}
+    python3 local/data_prep.py -d ${MALAYALAM}
     utils/spk2utt_to_utt2spk.pl data/train_ml/spk2utt > data/train_ml/utt2spk
     utils/spk2utt_to_utt2spk.pl data/dev_ml/spk2utt > data/dev_ml/utt2spk
     utils/spk2utt_to_utt2spk.pl data/test_ml/spk2utt > data/test_ml/utt2spk
