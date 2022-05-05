@@ -62,7 +62,7 @@ model_conf:
 optim: adam
 accum_grad: 1
 grad_clip: 3
-max_epoch: 90
+max_epoch: 95
 optim_conf:
     lr: 0.5
 scheduler: noamlr
